@@ -6,21 +6,41 @@ let gameBoard = (function(){
     return gameBoardObj;
 })()
 
-console.log(gameBoard.board); 
 
-function createPlayers(name, gamePiece){
-    let score = 0;
-    let getScore = ()=> console.log(`${name} score is ${score}`)
-    return {name, gamePiece, getScore}
+function createPlayers(){
+    firstPlayer = prompt("What is the first players name?");
+   secondPlayer = prompt("What is the second players name?"); 
+   switch1 = "on";
+   switch2 = "off";
+
+   flipFirstSwitch = () => switch1; /* Make this function change switch status instead of just returning it. */
+   flipSecondSwitch = () => switch2;
+
+   let firstPlayerObj = {firstPlayer, marker: "X", firstPlayerSwitch}
+   let secondPlayerObj = {secondPlayer, marker: "O", secondPlayerSwitch};
+
+   return {firstPlayerObj, secondPlayerObj};
 
 }
 
-let bob = createPlayers("bob","X");
-console.log(bob)
+
+let gameFlow = (function(){
+    let objects = createPlayers();
+    let {firstPlayerObj,secondPlayerObj} = objects;
+
+    if(firstPlayerObj.firstPlayerSwitch() === "on"){
+        let usersChoice1 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
+        let usersChoice2 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
+        gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
+        console.log(gameBoard.board)
+
+    }
+    
+    
+
+})()
 
 
-let billy = createPlayers("billy","O");
-console.log(billy)
 
 
 
