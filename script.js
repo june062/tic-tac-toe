@@ -1,5 +1,5 @@
 let gameBoard = (function(){
-    let array = [[0,0,0],[0,0,0],[0,0,0]];
+    let array = [["@","@","@"],["@","@","@"],["@","@","@"]];
     let gameBoardObj = {board: array};
 
 
@@ -39,7 +39,6 @@ let gameFlow = (function(){
 
     function playRound(){
         console.log(gameBoard);
-        for(i = 0;i < 5; i++){
 
         
         if(firstPlayerObj.getSwitchStatus1() === "on"){
@@ -54,11 +53,17 @@ let gameFlow = (function(){
             let usersChoice2 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
              secondPlayerObj.flipSecondSwitch();
+             firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
 
         }
     }
-}
+
+    function gameResults(){
+        /* This function should check the verticals, horizontals, and diagonals, of 2d
+        array to see if 3 in a row are a match. Then display who won or if it's a draw. */
+    }
+
 
 return {playRound};
     
