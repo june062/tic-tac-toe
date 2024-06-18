@@ -49,7 +49,7 @@ let gameFlow = (function(){
             console.log(gameBoard.board);
             gameResults();
         }
-        else {
+        else{
             let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
             let usersChoice2 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
@@ -63,16 +63,19 @@ let gameFlow = (function(){
 
     function gameResults(){
         for(row = 0; row < 3;row++){
-            /* To create an array of columns, maybe push board[row][0] into an array to do a similar check as
-            the every() below */
-            for(col = 0; col< gameBoard.board[row].length; col++){
                if(gameBoard.board[row].every((ev)=>ev ==="X"|| ev ==="O")){
                 console.log(gameBoard.board[row][0] ==="X"? `${firstPlayerObj.firstPlayer} is the winner!`: `${secondPlayerObj.secondPlayer} is the winner!`)
-                break;
-               };
-
                 
+                break;
             }
+            let colArr = [];
+            colArr.push(gameBoard.board[0][row],gameBoard.board[1][row],gameBoard.board[2][row]);
+            if(colArr.every((ev)=> ev === "X"|| ev ==="O")){
+                console.log(colArr[0] ==="X"? `${firstPlayerObj.firstPlayer} is the winner!`: `${secondPlayerObj.secondPlayer} is the winner!`)
+                break;
+            }
+
+            
         }
 
 
