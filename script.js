@@ -63,17 +63,54 @@ let gameFlow = (function(){
 
     function gameResults(){
         for(row = 0; row < 3;row++){
-               if(gameBoard.board[row].every((ev)=>ev ==="X"|| ev ==="O")){
-                console.log(gameBoard.board[row][0] ==="X"? `${firstPlayerObj.firstPlayer} is the winner!`: `${secondPlayerObj.secondPlayer} is the winner!`)
-                
+               if(gameBoard.board[row].every((ev)=>ev ==="X")){
+                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
                 break;
-            }
+               }
+                
+                else if(gameBoard.board[row].every((ev)=>ev ==="O")){
+                    console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                    break;
+                }
+            
             let colArr = [];
             colArr.push(gameBoard.board[0][row],gameBoard.board[1][row],gameBoard.board[2][row]);
-            if(colArr.every((ev)=> ev === "X"|| ev ==="O")){
-                console.log(colArr[0] ==="X"? `${firstPlayerObj.firstPlayer} is the winner!`: `${secondPlayerObj.secondPlayer} is the winner!`)
+            if(colArr.every((ev)=> ev === "X")){
+                console.log(`${firstPlayerObj.firstPlayer} is the winner!`)
                 break;
             }
+            else if(colArr.every((ev)=>ev ==="O")){
+                console.log(`${secondPlayerObj.secondPlayer} is the winner!`)
+                break;
+            }
+
+            let diagArr = [];
+            diagArr.push([gameBoard.board[0][0],gameBoard.board[1][1],gameBoard.board[2][2]],
+                        [gameBoard.board[0][2],gameBoard.board[1][1],gameBoard.board[2][0]]);
+
+        if(row === 0){
+            if(diagArr[0].every((ev)=> ev === "X")){
+                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
+                break;
+            }
+            else if(diagArr[0].every((ev)=> ev === "O")){
+                console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                break;
+
+            }
+            else if(diagArr[1].every((ev)=> ev === "X")){
+                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
+                break;
+            }
+            else if(diagArr[1].every((ev)=> ev === "O")){
+                console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                break;
+            }
+        }
+
+            
+            
+
 
             
         }
@@ -96,6 +133,9 @@ return {playRound, gameResults};
     
 
 })()
+gameFlow.playRound();
+gameFlow.playRound();
+gameFlow.playRound();
 gameFlow.playRound();
 gameFlow.playRound();
 gameFlow.playRound();
