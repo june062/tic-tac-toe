@@ -47,6 +47,7 @@ let gameFlow = (function(){
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
             console.log(gameBoard.board);
+            gameResults();
         }
         else {
             let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
@@ -55,21 +56,44 @@ let gameFlow = (function(){
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
+            gameResults();
 
         }
     }
 
     function gameResults(){
-        /* This function should check the verticals, horizontals, and diagonals, of 2d
-        array to see if 3 in a row are a match. Then display who won or if it's a draw. */
+        for(row = 0; row < 3;row++){
+            for(col = 0; col< gameBoard.board[row].length; col++){
+               
+               console.log(gameBoard.board[row].every((ev)=>ev ==="X"|| ev ==="O"));
+
+                
+            }
+        }
+
+
+       
+    
+    }
+
+    function playGame(){
+        /* Maybe it can loop 9 times since that is the max amount of turns there 
+        can be in a tic tac toe game? So it can call the playRound function 9 times,
+        declare a draw if it plays those full 9 rounds, otherwise, declare who got 
+        3 in a row first and end the game.*/
     }
 
 
-return {playRound};
+return {playRound, gameResults};
     
     
 
 })()
+gameFlow.playRound();
+gameFlow.playRound();
+gameFlow.playRound();
+gameFlow.playRound();
+gameFlow.playRound();
 gameFlow.playRound();
 
 
