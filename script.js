@@ -47,7 +47,7 @@ let gameFlow = (function(){
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
             console.log(gameBoard.board);
-            gameResults();
+            if (gameResults()) return true ;
         }
         else{
             let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
@@ -56,8 +56,7 @@ let gameFlow = (function(){
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
-            gameResults();
-
+            if (gameResults()) return true;
         }
     }
 
@@ -65,23 +64,23 @@ let gameFlow = (function(){
         for(row = 0; row < 3;row++){
                if(gameBoard.board[row].every((ev)=>ev ==="X")){
                 console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
-                break;
+                return true;
                }
                 
                 else if(gameBoard.board[row].every((ev)=>ev ==="O")){
                     console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
-                    break;
+                    return true;
                 }
             
             let colArr = [];
             colArr.push(gameBoard.board[0][row],gameBoard.board[1][row],gameBoard.board[2][row]);
             if(colArr.every((ev)=> ev === "X")){
                 console.log(`${firstPlayerObj.firstPlayer} is the winner!`)
-                break;
+                return true;
             }
             else if(colArr.every((ev)=>ev ==="O")){
                 console.log(`${secondPlayerObj.secondPlayer} is the winner!`)
-                break;
+                return true;
             }
 
             let diagArr = [];
@@ -91,29 +90,24 @@ let gameFlow = (function(){
         if(row === 0){
             if(diagArr[0].every((ev)=> ev === "X")){
                 console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
-                break;
+                return true;
             }
             else if(diagArr[0].every((ev)=> ev === "O")){
                 console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
-                break;
+                return true;
 
             }
             else if(diagArr[1].every((ev)=> ev === "X")){
                 console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
-                break;
+                return true;
             }
             else if(diagArr[1].every((ev)=> ev === "O")){
                 console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
-                break;
+                return true;
             }
         }
-
-            
-            
-
-
-            
-        }
+  
+    }
 
 
        
@@ -125,23 +119,21 @@ let gameFlow = (function(){
         can be in a tic tac toe game? So it can call the playRound function 9 times,
         declare a draw if it plays those full 9 rounds, otherwise, declare who got 
         3 in a row first and end the game.*/
+        for(i=0; i< 9;i++){
+            if(playRound()) return;
+            if(i===8){
+                console.log("The game is a draw")
+            }
+        }
     }
 
 
-return {playRound, gameResults};
+return {playGame};
     
     
 
 })()
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
-gameFlow.playRound();
+gameFlow.playGame();
 
 
 
