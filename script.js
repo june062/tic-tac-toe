@@ -1,5 +1,5 @@
 let gameBoard = (function(){
-    let array = [["@","@","@"],["@","@","@"],["@","@","@"]];
+    let array = [["","",""],["","",""],["","",""]];
     let gameBoardObj = {board: array};
 
 
@@ -122,17 +122,20 @@ return {playGame};
 })()
 
 let gameDisplay = (function(){
+    let gameContainer = document.querySelector('div.game-board-container');
+
+    function displayMarker(event){
+        let eventTarget = event.target;
+        console.log(eventTarget);
+    }
+    return {displayMarker};
     
 
 
 })()
 
 
-gameFlow.playGame();
+/* gameFlow.playGame(); */
 
-
-
-
-
-
-
+let gameContainer = document.querySelector('div.game-board-container');
+gameContainer.addEventListener("click", gameDisplay.displayMarker)

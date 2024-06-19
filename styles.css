@@ -26,16 +26,27 @@ body{
     align-items: center;
 }
 .game-board{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .game-board > div{
-    height: 50px;
-    width: 50px;
-    border: solid black;
+    height: 120px;
+    width: 120px;
+}
+.game-board > div:nth-child(-n+5):not(:nth-child(3)){
+    border-bottom: solid black;
+    border-right: solid black;
 
 }
+.game-board > div:nth-child(7),.game-board > div:nth-child(8){
+    border-right: solid black;
+}
+.game-board > div:nth-child(3),.game-board > div:nth-child(6){
+    border-bottom: solid black;
+}
+
 
 .restart-container{
     grid-area: 4 1 5 2;
-
+   
 }
