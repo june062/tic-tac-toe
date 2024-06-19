@@ -6,7 +6,6 @@ let gameBoard = (function(){
     return gameBoardObj;
 })()
 
-
 function createPlayers(){
     let firstPlayer = prompt("What is the first players name?");
    let secondPlayer = prompt("What is the second players name?"); 
@@ -31,7 +30,6 @@ function createPlayers(){
    return {firstPlayerObj, secondPlayerObj};
 
 }
-
 
 let gameFlow = (function(){
     let objects = createPlayers();
@@ -108,17 +106,9 @@ let gameFlow = (function(){
         }
   
     }
-
-
-       
-    
     }
 
     function playGame(){
-        /* Maybe it can loop 9 times since that is the max amount of turns there 
-        can be in a tic tac toe game? So it can call the playRound function 9 times,
-        declare a draw if it plays those full 9 rounds, otherwise, declare who got 
-        3 in a row first and end the game.*/
         for(i=0; i< 9;i++){
             if(playRound()) return;
             if(i===8){
@@ -129,10 +119,15 @@ let gameFlow = (function(){
 
 
 return {playGame};
-    
+})()
+
+let gameDisplay = (function(){
     
 
+
 })()
+
+
 gameFlow.playGame();
 
 
