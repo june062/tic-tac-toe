@@ -35,21 +35,21 @@ let gameFlow = (function(){
     let objects = createPlayers();
     let {firstPlayerObj,secondPlayerObj} = objects;
 
-    function playRound(){
+    function playRound(usersChoice1,usersChoice2){
         console.log(gameBoard);
 
         
         if(firstPlayerObj.getSwitchStatus1() === "on"){
-            let usersChoice1 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
-            let usersChoice2 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
+           /*  let usersChoice1 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
+            let usersChoice2 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`); */
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
             console.log(gameBoard.board);
             if (gameResults()) return true ;
         }
         else{
-            let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
-            let usersChoice2 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
+            /* let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
+            let usersChoice2 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`); */
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
@@ -118,7 +118,7 @@ let gameFlow = (function(){
     }
 
 
-return {playGame};
+return {playGame, playRound,gameResults};
 })()
 
 let gameDisplay = (function(){
@@ -126,7 +126,10 @@ let gameDisplay = (function(){
 
     function displayMarker(event){
         let eventTarget = event.target;
-        console.log(eventTarget);
+        let firstIndex = eventTarget.dataset.firstindex;
+        let secondIndex = eventTarget.dataset.secondindex;
+
+        gameFlow.playRound(firstIndex, secondIndex);
     }
     return {displayMarker};
     
