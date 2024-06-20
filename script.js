@@ -45,6 +45,7 @@ let gameFlow = (function(){
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
             console.log(gameBoard.board);
+    
             if (gameResults()) return true ;
         }
         else{
@@ -54,6 +55,7 @@ let gameFlow = (function(){
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
+            
             if (gameResults()) return true;
         }
     }
@@ -123,13 +125,22 @@ return {playGame, playRound,gameResults};
 
 let gameDisplay = (function(){
     let gameContainer = document.querySelector('div.game-board-container');
+   
+
+     
 
     function displayMarker(event){
         let eventTarget = event.target;
         let firstIndex = eventTarget.dataset.firstindex;
         let secondIndex = eventTarget.dataset.secondindex;
+        
 
         gameFlow.playRound(firstIndex, secondIndex);
+
+        let marker;
+    
+        let markerDisplay = document.createElement("p").textContent= marker;
+        eventTarget.appendChild(markerDisplay);
     }
     return {displayMarker};
     
@@ -138,7 +149,9 @@ let gameDisplay = (function(){
 })()
 
 
+
 /* gameFlow.playGame(); */
 
 let gameContainer = document.querySelector('div.game-board-container');
 gameContainer.addEventListener("click", gameDisplay.displayMarker)
+gameContainer.addEventListener("click",()=>console.log(gameDisplay))
