@@ -43,7 +43,10 @@ let gameDisplay = (function(){
         let secondIndex = eventTarget.dataset.secondindex;
         
 
-        gameFlow.playRound(firstIndex, secondIndex);
+        if(gameFlow.playRound(firstIndex, secondIndex)==="winner"){
+           gameContainer.removeEventListener("click",gameDisplay.displayMarker);
+          
+        };
 
        
         if(eventTarget.children.length === 0 ){
@@ -74,7 +77,10 @@ let gameFlow = (function(){
             gameDisplay.marker = firstPlayerObj.marker;
             
     
-            if (gameResults()) return true ;
+            /* if (gameResults()) return true ; */
+            if(gameResults()==="winner"){
+                return "winner";
+            };
         }
         else if(secondPlayerObj.getSwitchStatus2() === "on"&& gameBoard.board[usersChoice1][usersChoice2]===""){
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
@@ -85,7 +91,10 @@ let gameFlow = (function(){
             
     
             
-            if (gameResults()) return true;
+            /* if (gameResults()) return true; */
+            if(gameResults()==="winner"){
+                return "winner";
+            };
         }
     }
 
@@ -96,7 +105,19 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+               /*  switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+
+                return "winner";
                }
                 
                 else if(gameBoard.board[row].every((ev)=>ev ==="O")){
@@ -104,7 +125,18 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                    return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                    return "winner";
                 }
             
             let colArr = [];
@@ -114,14 +146,36 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`;
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                return "winner";
             }
             else if(colArr.every((ev)=>ev ==="O")){
                 let winnerDisplay = document.createElement("p");
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                return "winner";
             }
 
             let diagArr = [];
@@ -134,14 +188,36 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                }
+ */
+
+                return "winner";
             }
             else if(diagArr[0].every((ev)=> ev === "O")){
                 let winnerDisplay = document.createElement("p");
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                return "winner";
 
             }
             else if(diagArr[1].every((ev)=> ev === "X")){
@@ -149,38 +225,53 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                return "winner";
             }
             else if(diagArr[1].every((ev)=> ev === "O")){
                 let winnerDisplay = document.createElement("p");
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
-                return true;
+
+                /* switch(firstPlayerObj.getSwitchStatus1){
+                    case "on":
+                        firstPlayerObj.flipFirstSwitch;
+                        break;
+                    case "off":
+                        secondPlayerObj.flipSecondSwitch;
+                        break;
+                } */
+
+
+                return "winner";
             }
         }
   
     }
+
+    
     }
 
-    /* function playGame(){
-        for(i=0; i< 9;i++){
-            if(playRound()) return;
-            if(i===8){
-                console.log("The game is a draw")
-            }
-        }
-    }
- */
+   
 
-return {/* playGame, */ playRound,gameResults};
+return {playRound,gameResults};
 })()
 
 
 
 
-/* gameFlow.playGame(); */
+
 
 let gameContainer = document.querySelector('div.game-board-container');
 gameContainer.addEventListener("click", gameDisplay.displayMarker)
-gameContainer.addEventListener("click",()=>console.log(gameDisplay))
