@@ -46,11 +46,11 @@ let gameDisplay = (function(){
         gameFlow.playRound(firstIndex, secondIndex);
 
        
-    
-        let markerDisplay = document.createElement("p");
-        markerDisplay.textContent= gameDisplay.marker;
-        console.log(markerDisplay)
-        eventTarget.appendChild(markerDisplay);
+        if(eventTarget.children.length === 0 ){
+            let markerDisplay = document.createElement("p");
+            markerDisplay.textContent= gameDisplay.marker;
+            eventTarget.appendChild(markerDisplay);
+        }
     }
     return {displayMarker, marker};
     
@@ -63,24 +63,27 @@ let gameFlow = (function(){
     let objects = createPlayers();
     let {firstPlayerObj,secondPlayerObj} = objects;
 
-    function playRound(usersChoice1,usersChoice2){
+    function playRound(usersChoice1,usersChoice2, event){
         console.log(gameBoard);
 
         
-        if(firstPlayerObj.getSwitchStatus1() === "on"){
+        if(firstPlayerObj.getSwitchStatus1() === "on"&& gameBoard.board[usersChoice1][usersChoice2]===""){
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
-            console.log(gameBoard.board);
+            secondPlayerObj.flipSecondSwitch();
             gameDisplay.marker = firstPlayerObj.marker;
+            
     
             if (gameResults()) return true ;
         }
-        else{
+        else if(secondPlayerObj.getSwitchStatus2() === "on"&& gameBoard.board[usersChoice1][usersChoice2]===""){
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
             gameDisplay.marker = secondPlayerObj.marker; 
+            
+    
             
             if (gameResults()) return true;
         }
@@ -89,7 +92,6 @@ let gameFlow = (function(){
     function gameResults(){
         for(row = 0; row < 3;row++){
                if(gameBoard.board[row].every((ev)=>ev ==="X")){
-                /* console.log(`${firstPlayerObj.firstPlayer} is the winner!`); */
                 let winnerDisplay = document.createElement("p");
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
