@@ -31,6 +31,34 @@ function createPlayers(){
 
 }
 
+let gameDisplay = (function(){
+    let gameContainer = document.querySelector('div.game-board-container');
+   
+    let marker;
+     
+
+    function displayMarker(event){
+        let eventTarget = event.target;
+        let firstIndex = eventTarget.dataset.firstindex;
+        let secondIndex = eventTarget.dataset.secondindex;
+        
+
+        gameFlow.playRound(firstIndex, secondIndex);
+
+       
+    
+        let markerDisplay = document.createElement("p");
+        markerDisplay.textContent= gameDisplay.marker;
+        console.log(markerDisplay)
+        eventTarget.appendChild(markerDisplay);
+    }
+    return {displayMarker, marker};
+    
+
+
+})()
+
+
 let gameFlow = (function(){
     let objects = createPlayers();
     let {firstPlayerObj,secondPlayerObj} = objects;
@@ -40,21 +68,19 @@ let gameFlow = (function(){
 
         
         if(firstPlayerObj.getSwitchStatus1() === "on"){
-           /*  let usersChoice1 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`);
-            let usersChoice2 = prompt(`it's ${firstPlayerObj.firstPlayer}'s turn`); */
             gameBoard.board[usersChoice1][usersChoice2] = firstPlayerObj.marker;
              firstPlayerObj.flipFirstSwitch(); 
             console.log(gameBoard.board);
+            gameDisplay.marker = firstPlayerObj.marker;
     
             if (gameResults()) return true ;
         }
         else{
-            /* let usersChoice1 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`);
-            let usersChoice2 = prompt(`it's ${secondPlayerObj.secondPlayer}'s turn`); */
             gameBoard.board[usersChoice1][usersChoice2] = secondPlayerObj.marker;
              secondPlayerObj.flipSecondSwitch();
              firstPlayerObj.flipFirstSwitch();
             console.log(gameBoard.board);
+            gameDisplay.marker = secondPlayerObj.marker; 
             
             if (gameResults()) return true;
         }
@@ -110,7 +136,7 @@ let gameFlow = (function(){
     }
     }
 
-    function playGame(){
+    /* function playGame(){
         for(i=0; i< 9;i++){
             if(playRound()) return;
             if(i===8){
@@ -118,35 +144,11 @@ let gameFlow = (function(){
             }
         }
     }
+ */
 
-
-return {playGame, playRound,gameResults};
+return {/* playGame, */ playRound,gameResults};
 })()
 
-let gameDisplay = (function(){
-    let gameContainer = document.querySelector('div.game-board-container');
-   
-
-     
-
-    function displayMarker(event){
-        let eventTarget = event.target;
-        let firstIndex = eventTarget.dataset.firstindex;
-        let secondIndex = eventTarget.dataset.secondindex;
-        
-
-        gameFlow.playRound(firstIndex, secondIndex);
-
-        let marker;
-    
-        let markerDisplay = document.createElement("p").textContent= marker;
-        eventTarget.appendChild(markerDisplay);
-    }
-    return {displayMarker};
-    
-
-
-})()
 
 
 
