@@ -89,23 +89,36 @@ let gameFlow = (function(){
     function gameResults(){
         for(row = 0; row < 3;row++){
                if(gameBoard.board[row].every((ev)=>ev ==="X")){
-                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
+                /* console.log(`${firstPlayerObj.firstPlayer} is the winner!`); */
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
                }
                 
                 else if(gameBoard.board[row].every((ev)=>ev ==="O")){
-                    console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                     return true;
                 }
             
             let colArr = [];
             colArr.push(gameBoard.board[0][row],gameBoard.board[1][row],gameBoard.board[2][row]);
             if(colArr.every((ev)=> ev === "X")){
-                console.log(`${firstPlayerObj.firstPlayer} is the winner!`)
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`;
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
             }
             else if(colArr.every((ev)=>ev ==="O")){
-                console.log(`${secondPlayerObj.secondPlayer} is the winner!`)
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
             }
 
@@ -115,20 +128,32 @@ let gameFlow = (function(){
 
         if(row === 0){
             if(diagArr[0].every((ev)=> ev === "X")){
-                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
             }
             else if(diagArr[0].every((ev)=> ev === "O")){
-                console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
 
             }
             else if(diagArr[1].every((ev)=> ev === "X")){
-                console.log(`${firstPlayerObj.firstPlayer} is the winner!`);
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
             }
             else if(diagArr[1].every((ev)=> ev === "O")){
-                console.log(`${secondPlayerObj.secondPlayer} is the winner!`);
+                let winnerDisplay = document.createElement("p");
+                let winnerContainer = document.querySelector(".winner");
+                winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
+                winnerContainer.appendChild(winnerDisplay);
                 return true;
             }
         }
