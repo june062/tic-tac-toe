@@ -77,7 +77,7 @@ let gameFlow = (function(){
             gameDisplay.marker = firstPlayerObj.marker;
             
     
-            /* if (gameResults()) return true ; */
+          
             if(gameResults()==="winner"){
                 return "winner";
             };
@@ -90,8 +90,7 @@ let gameFlow = (function(){
             gameDisplay.marker = secondPlayerObj.marker; 
             
     
-            
-            /* if (gameResults()) return true; */
+       
             if(gameResults()==="winner"){
                 return "winner";
             };
@@ -106,14 +105,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-               /*  switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
+               
 
 
 
@@ -126,16 +118,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
-
-
+               
                     return "winner";
                 }
             
@@ -147,14 +130,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`;
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
+               
 
 
                 return "winner";
@@ -165,16 +141,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
-
-
+               
                 return "winner";
             }
 
@@ -189,15 +156,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                }
- */
+             
 
                 return "winner";
             }
@@ -207,14 +166,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
+             
 
 
                 return "winner";
@@ -226,15 +178,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
-
+               
 
                 return "winner";
             }
@@ -244,14 +188,7 @@ let gameFlow = (function(){
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
 
-                /* switch(firstPlayerObj.getSwitchStatus1){
-                    case "on":
-                        firstPlayerObj.flipFirstSwitch;
-                        break;
-                    case "off":
-                        secondPlayerObj.flipSecondSwitch;
-                        break;
-                } */
+              
 
 
                 return "winner";
@@ -260,8 +197,13 @@ let gameFlow = (function(){
   
     }
 
-    
-    }
+     if((gameBoard.board[0].every((e)=> e ==="O"||e==="X")&&gameBoard.board[1].every((e)=> e ==="O"||e==="X"))&&gameBoard.board[2].every((e)=> e ==="O"||e==="X")){
+    let winnerDisplay = document.createElement("p");
+    let drawContainer = document.querySelector(".winner");
+    winnerDisplay.textContent = "Draw"
+    drawContainer.appendChild(winnerDisplay);
+    return "winner";
+    } }
 
    
 
