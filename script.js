@@ -55,7 +55,29 @@ let gameDisplay = (function(){
             eventTarget.appendChild(markerDisplay);
         }
     }
-    return {displayMarker, marker};
+    function resetGame(){
+        gameBoard.board = [["","",""],["","",""],["","",""]];
+        let cellNodeList = document.querySelectorAll(".game-board > div");
+        let winnerContainer = document.querySelector(".winner");
+        for (const element of cellNodeList){
+            if (element.hasChildNodes()){
+                while(element.firstChild){
+                    element.removeChild(element.firstChild)
+                }
+            }
+        }
+        if(winnerContainer.hasChildNodes()){
+            while(winnerContainer.firstChild){
+                winnerContainer.removeChild(winnerContainer.firstChild)
+            }
+        }
+
+
+
+
+
+    }
+    return {displayMarker, marker, resetGame};
     
 
 
@@ -129,6 +151,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`;
                 winnerContainer.appendChild(winnerDisplay);
+                colArr = [];
 
                
 
@@ -140,6 +163,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
+                colArr = [];
 
                
                 return "winner";
@@ -155,6 +179,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
+                diagArr=[];
 
              
 
@@ -165,6 +190,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
+                diagArr= [];
 
              
 
@@ -177,6 +203,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${firstPlayerObj.firstPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
+                diagArr=[];
 
                
 
@@ -187,6 +214,7 @@ let gameFlow = (function(){
                 let winnerContainer = document.querySelector(".winner");
                 winnerDisplay.textContent = `${secondPlayerObj.secondPlayer} is the winner!`
                 winnerContainer.appendChild(winnerDisplay);
+                diagArr=[];
 
               
 
@@ -216,4 +244,6 @@ return {playRound,gameResults};
 
 
 let gameContainer = document.querySelector('div.game-board-container');
+let resetGameBut = document.querySelector(".restart-container > button")
 gameContainer.addEventListener("click", gameDisplay.displayMarker)
+resetGameBut.addEventListener("click", gameDisplay.resetGame)
