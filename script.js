@@ -53,6 +53,7 @@ let gameDisplay = (function(){
             let markerDisplay = document.createElement("p");
             markerDisplay.textContent= gameDisplay.marker;
             eventTarget.appendChild(markerDisplay);
+
         }
     }
     function resetGame(){
@@ -72,6 +73,14 @@ let gameDisplay = (function(){
             }
         }
 
+        let objects = createPlayers();
+    let {firstPlayerObj,secondPlayerObj} = objects;
+
+    if (firstPlayerObj.getSwitchStatus1==="off"){
+        secondPlayerObj.flipSecondSwitch();
+    }
+    gameContainer.addEventListener("click", gameDisplay.displayMarker)
+
 
 
 
@@ -88,8 +97,8 @@ let gameFlow = (function(){
     let objects = createPlayers();
     let {firstPlayerObj,secondPlayerObj} = objects;
 
-    function playRound(usersChoice1,usersChoice2, event){
-        console.log(gameBoard);
+    function playRound(usersChoice1,usersChoice2, ){
+       
 
         
         if(firstPlayerObj.getSwitchStatus1() === "on"&& gameBoard.board[usersChoice1][usersChoice2]===""){
